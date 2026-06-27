@@ -16,6 +16,7 @@ public class UI : MonoBehaviour
 
 	private void Start()
 	{
+		Instance = this;
 		_winImage.SetActive(false);
 		_loseImage.SetActive(false);
 	}

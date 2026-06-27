@@ -1,16 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public interface IKillable
-{
-	public GameObject gameObject { get; }
-
-	public void Kill()
-	{
-		MonoBehaviour.Destroy(gameObject);
-	}
-}
-
+public interface IKillable { public void Kill(); }
 public interface IDanger { }
 
 [RequireComponent(typeof(Collider2D))]

@@ -11,7 +11,7 @@ public class FireballGun : MonoBehaviour
 
 	private void Start()
 	{
-		_position = transform.position.WorldToTilemap();
+		_position = transform.position.WorldToTilemap() + _direction.ToVector();
 		GetComponent<SpriteRenderer>().sprite = Game.GetFireballGunSprite(_direction);
 	}
 

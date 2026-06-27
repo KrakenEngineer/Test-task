@@ -29,7 +29,9 @@ public class Fireball : Movable, IKillable, IDanger
 	{
 		if (collision.gameObject.TryGetComponent(out IKillable k))
 			k.Kill();
-		if (!collision.gameObject.TryGetComponent(out Fireball f))
+		if (!collision.gameObject.TryGetComponent(out Fireball f) && !collision.gameObject.TryGetComponent(out Player p))
 			(this as IKillable).Kill();
 	}
+
+	public void Kill() => Destroy(gameObject);
 }

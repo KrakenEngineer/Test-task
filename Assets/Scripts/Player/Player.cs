@@ -13,6 +13,7 @@ public class Player : Movable, IKillable
 	protected override void Start()
 	{
 		base.Start();
+		Instance = this;
 		_destination = Position;
 		_framesBetweenPathfinds = (uint)Mathf.FloorToInt(30 / _speed);
 	}
@@ -42,16 +43,17 @@ public class Player : Movable, IKillable
 		StartCoroutine(Goto(dest));
 	}
 
-	private void OnValidate()
-	{
-		Instance = this;
-	}
-
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.gameObject.TryGetComponent(out IDanger danger))
 			Game.Lose();
-		if (collision.gameObject.CompareTag("Finish"))
+		if (collision.gameObject.TryGetComponent(out Goal g))
 			Game.Win();
+	}
+
+	public void Kill()
+	{
+		Destroy(gameObject);
+		Game.Lose();
 	}
 }

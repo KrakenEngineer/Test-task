@@ -24,7 +24,10 @@ public class Game : MonoBehaviour
 
 	private void Start()
 	{
+		Instance = this;
 		PathFinder.Init();
+		Time.timeScale = 1;
+		State = GameState.Play;
 	}
 
 	private void Update()
@@ -43,6 +46,7 @@ public class Game : MonoBehaviour
 		State = GameState.Won;
 		((IKillable)Player.Instance)?.Kill();
 		UI.Win();
+		Time.timeScale = 0;
 	}
 
 	public static void Lose()
@@ -52,6 +56,7 @@ public class Game : MonoBehaviour
 		State = GameState.Lost;
 		((IKillable)Player.Instance)?.Kill();
 		UI.Lose();
+		Time.timeScale = 0;
 	}
 
 	public static bool HasObstacleAt(Vector3Int position) =>

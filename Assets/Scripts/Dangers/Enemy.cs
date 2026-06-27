@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : Movable, IKillable, IDanger
+public class Enemy : Movable, IDanger
 {
 	[SerializeField] private Direction4 _direction;
 
@@ -16,12 +16,6 @@ public class Enemy : Movable, IKillable, IDanger
 			return;
 		}
 		StartCoroutine(Goto(dest));
-	}
-
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (!collision.gameObject.TryGetComponent(out Enemy e))
-			(this as IKillable).Kill();
 	}
 
 	private void Flip()
